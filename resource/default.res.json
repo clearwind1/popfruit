@@ -1,0 +1,234 @@
+{
+	"groups": [
+		{
+			"keys": "loadingbar_png",
+			"name": "preloading"
+		},
+		{
+			"keys": "startgamebtn_png,helpbtn_png,sharebtn_png,settingbtn_png,closebtn_png,settingbg_png,settingswitch_png,settingswitchoff_png,settingswitchon_png,rankbg_png,helpbg_png,moregamename_json,restartbtn_png,returnbtn_png,gameoverbg_png,nobtn_png,yesbtn_png,sharetip_png,comble_mp3,move_mp3,newcored_mp3,click_mp3,restartbg_png,gametitle_png,startgamebg_png,helptext_png,ranktext_png,rankname_png,rankselect_png,gamebg_png,restarttext_png,gameoverrestartbtn_png,gameoverretrunbtn_png,gameoversharebtn_png,gameovertext_png,rankbtn_png,fruit_0_png,fruit_1_png,fruit_2_png,fruit_3_png,fruit_4_png,fruit_0_s_png,fruit_1_s_png,fruit_2_s_png,fruit_3_s_png,fruit_4_s_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"name": "loadingbar_png",
+			"type": "image",
+			"url": "assets/loadingbar.png"
+		},
+		{
+			"name": "description",
+			"type": "json",
+			"url": "config/description.json"
+		},
+		{
+			"name": "startgamebtn_png",
+			"type": "image",
+			"url": "assets/startgamebtn.png"
+		},
+		{
+			"name": "helpbtn_png",
+			"type": "image",
+			"url": "assets/helpbtn.png"
+		},
+		{
+			"name": "sharebtn_png",
+			"type": "image",
+			"url": "assets/sharebtn.png"
+		},
+		{
+			"name": "settingbtn_png",
+			"type": "image",
+			"url": "assets/settingbtn.png"
+		},
+		{
+			"name": "closebtn_png",
+			"type": "image",
+			"url": "assets/closebtn.png"
+		},
+		{
+			"name": "settingbg_png",
+			"type": "image",
+			"url": "assets/settingbg.png"
+		},
+		{
+			"name": "settingswitch_png",
+			"type": "image",
+			"url": "assets/settingswitch.png"
+		},
+		{
+			"name": "settingswitchoff_png",
+			"type": "image",
+			"url": "assets/settingswitchoff.png"
+		},
+		{
+			"name": "settingswitchon_png",
+			"type": "image",
+			"url": "assets/settingswitchon.png"
+		},
+		{
+			"name": "rankbg_png",
+			"type": "image",
+			"url": "assets/rankbg.png"
+		},
+		{
+			"name": "helpbg_png",
+			"type": "image",
+			"url": "assets/helpbg.png"
+		},
+		{
+			"name": "moregamename_json",
+			"type": "json",
+			"url": "config/moregamename.json"
+		},
+		{
+			"name": "restartbtn_png",
+			"type": "image",
+			"url": "assets/restartbtn.png"
+		},
+		{
+			"name": "returnbtn_png",
+			"type": "image",
+			"url": "assets/returnbtn.png"
+		},
+		{
+			"name": "gameoverbg_png",
+			"type": "image",
+			"url": "assets/gameoverbg.png"
+		},
+		{
+			"name": "nobtn_png",
+			"type": "image",
+			"url": "assets/nobtn.png"
+		},
+		{
+			"name": "yesbtn_png",
+			"type": "image",
+			"url": "assets/yesbtn.png"
+		},
+		{
+			"name": "sharetip_png",
+			"type": "image",
+			"url": "assets/sharetip.png"
+		},
+		{
+			"name": "restartbg_png",
+			"type": "image",
+			"url": "assets/restartbg.png"
+		},
+		{
+			"name": "gametitle_png",
+			"type": "image",
+			"url": "assets/gametitle.png"
+		},
+		{
+			"name": "startgamebg_png",
+			"type": "image",
+			"url": "assets/startgamebg.png"
+		},
+		{
+			"name": "helptext_png",
+			"type": "image",
+			"url": "assets/helptext.png"
+		},
+		{
+			"name": "ranktext_png",
+			"type": "image",
+			"url": "assets/ranktext.png"
+		},
+		{
+			"name": "rankname_png",
+			"type": "image",
+			"url": "assets/rankname.png"
+		},
+		{
+			"name": "rankselect_png",
+			"type": "image",
+			"url": "assets/rankselect.png"
+		},
+		{
+			"name": "gamebg_png",
+			"type": "image",
+			"url": "assets/gamebg.png"
+		},
+		{
+			"name": "restarttext_png",
+			"type": "image",
+			"url": "assets/restarttext.png"
+		},
+		{
+			"name": "gameoverrestartbtn_png",
+			"type": "image",
+			"url": "assets/gameoverrestartbtn.png"
+		},
+		{
+			"name": "gameoverretrunbtn_png",
+			"type": "image",
+			"url": "assets/gameoverretrunbtn.png"
+		},
+		{
+			"name": "gameoversharebtn_png",
+			"type": "image",
+			"url": "assets/gameoversharebtn.png"
+		},
+		{
+			"name": "gameovertext_png",
+			"type": "image",
+			"url": "assets/gameovertext.png"
+		},
+		{
+			"name": "rankbtn_png",
+			"type": "image",
+			"url": "assets/rankbtn.png"
+		},
+		{
+			"name": "fruit_0_png",
+			"type": "image",
+			"url": "assets/fruit/fruit_0.png"
+		},
+		{
+			"name": "fruit_1_png",
+			"type": "image",
+			"url": "assets/fruit/fruit_1.png"
+		},
+		{
+			"name": "fruit_2_png",
+			"type": "image",
+			"url": "assets/fruit/fruit_2.png"
+		},
+		{
+			"name": "fruit_3_png",
+			"type": "image",
+			"url": "assets/fruit/fruit_3.png"
+		},
+		{
+			"name": "fruit_4_png",
+			"type": "image",
+			"url": "assets/fruit/fruit_4.png"
+		},
+		{
+			"name": "fruit_0_s_png",
+			"type": "image",
+			"url": "assets/fruit/fruit_0_s.png"
+		},
+		{
+			"name": "fruit_1_s_png",
+			"type": "image",
+			"url": "assets/fruit/fruit_1_s.png"
+		},
+		{
+			"name": "fruit_2_s_png",
+			"type": "image",
+			"url": "assets/fruit/fruit_2_s.png"
+		},
+		{
+			"name": "fruit_3_s_png",
+			"type": "image",
+			"url": "assets/fruit/fruit_3_s.png"
+		},
+		{
+			"name": "fruit_4_s_png",
+			"type": "image",
+			"url": "assets/fruit/fruit_4_s.png"
+		}
+	]
+}
