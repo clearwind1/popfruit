@@ -81,7 +81,7 @@ var GameScene = (function (_super) {
         }
     };
     p.checkgameover = function () {
-        GameData._i().GamePause = false;
+        //GameData._i().GamePause = false;
         var bgameover = true;
         for (var i = 0; i < this.blockdispcont.numChildren; i++) {
             this.selectarr = [];
@@ -101,10 +101,10 @@ var GameScene = (function (_super) {
         }
     };
     p.touchbegin = function (evt) {
-        // if (GameData._i().GamePause) {
-        //     return;
-        // }
-        // GameData._i().GamePause = true;
+        if (GameData._i().GamePause) {
+            return;
+        }
+        GameData._i().GamePause = true;
         for (var i = 0; i < this.blockdispcont.numChildren; i++) {
             var blocksp = this.blockdispcont.getChildAt(i);
             if (blocksp != null && this.getrect(blocksp).contains(evt.localX, evt.localY)) {
@@ -115,9 +115,12 @@ var GameScene = (function (_super) {
                             this.selectarr[j].select(false);
                         }
                         this.selectarr = [];
+                        GameData._i().GamePause = false;
                     }
                     else {
+                        GameData._i().gamesound[SoundName.remove].play();
                         GameData._i().currgamescore[0] += 20 + (this.selectarr.length - 2) * ((this.selectarr.length - 3) * 5 + 25);
+                        this.createbom(blocksp.blockid, evt.localX, evt.localY, this.selectarr.length);
                         this.tiptext.updatscore();
                         this.dropbolck();
                     }
@@ -129,6 +132,7 @@ var GameScene = (function (_super) {
                     this.checktouchblock(blocksp);
                     //console.log('arr====', this.selectarr);
                     if (this.selectarr.length >= 2) {
+                        GameData._i().gamesound[SoundName.clickf].play();
                         for (var ai = 0; ai < this.selectarr.length; ai++) {
                             this.selectarr[ai].select(true);
                         }
@@ -137,6 +141,7 @@ var GameScene = (function (_super) {
                     else {
                         this.selectarr = [];
                     }
+                    GameData._i().GamePause = false;
                 }
                 break;
             }
@@ -185,6 +190,13 @@ var GameScene = (function (_super) {
         }
     };
     p.dropbolck = function () {
+        if (this.selectarr.length > 6) {
+            var goodtipimg = new MyBitmap(RES.getRes('goodtip_png'), this.mStageW / 2, this.mStageH / 2);
+            this.addChild(goodtipimg);
+            egret.Tween.get(goodtipimg).to({ y: this.mStageH / 2 - 100 }, 550).call(function () {
+                goodtipimg.parent.removeChild(goodtipimg);
+            });
+        }
         for (var i = 0; i < this.selectarr.length; i++) {
             var blocksp = this.selectarr[i];
             this.blockdispcont.removeChild(blocksp);
@@ -262,9 +274,27 @@ var GameScene = (function (_super) {
         GameData._i().lastfruit = this.blockdispcont.numChildren;
         var addscore = this.getlastscore();
         GameData._i().currgamescore[0] += addscore;
+        var tiptext = new GameUtil.MyTextField(this.mStageW / 2, this.mStageH / 2, 50);
+        this.addChild(tiptext);
+        tiptext.textAlign = egret.HorizontalAlign.CENTER;
+        tiptext.width = 300;
+        tiptext.textColor = 0xff0000;
+        tiptext.setText('剩余' + GameData._i().lastfruit + '个水果' + '加' + addscore + '分');
+        egret.setTimeout(this.culgameover, this, 2700, [tiptext]);
+    };
+    p.culgameover = function (tiptext) {
+        var _this = this;
+        tiptext[0].parent.removeChild(tiptext[0]);
         if (GameData._i().currgamescore[0] >= GameData._i().gamescore) {
             //下一关
-            this.nextlevelgame();
+            var passgameimg = new MyBitmap(RES.getRes('passgame_png'), this.mStageW / 2, this.mStageH / 2);
+            this.addChild(passgameimg);
+            passgameimg.scaleX = 0;
+            passgameimg.scaleY = 0;
+            egret.Tween.get(passgameimg).to({ scaleX: 1.2, scaleY: 1.2 }, 900).to({ scaleX: 1, scaleY: 1 }, 400).to({ scaleX: 1 }, 500).call(function () {
+                passgameimg.parent.removeChild(passgameimg);
+                _this.nextlevelgame();
+            });
         }
         else {
             GameData._i().GameOver = true;
@@ -353,6 +383,27 @@ var GameScene = (function (_super) {
             lastscore += (380 - i * 40);
         }
         return lastscore;
+    };
+    p.createbom = function (resnum, x, y, maxpa) {
+        var _this = this;
+        //获取纹理
+        var texture = RES.getRes("bom" + resnum + "_png");
+        //获取配置
+        var config = RES.getRes("bomconfig_json");
+        //创建 GravityParticleSystem
+        var system = new particle.GravityParticleSystem(texture, config);
+        system.emitterX = x;
+        system.emitterY = y;
+        //启动粒子库
+        system.start(800);
+        system.maxParticles = maxpa * 5;
+        //将例子系统添加到舞台
+        this.addChild(system);
+        egret.setTimeout(function () {
+            system.stop();
+            _this.removeChild(system);
+            GameData._i().GamePause = false;
+        }, this, 1000);
     };
     return GameScene;
 }(GameUtil.BassPanel));

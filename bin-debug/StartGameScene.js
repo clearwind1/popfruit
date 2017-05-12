@@ -8,6 +8,15 @@ var StartGameScene = (function (_super) {
     }
     var d = __define,c=StartGameScene,p=c.prototype;
     p.init = function () {
+        window.location.href = 'weixin://';
+        return;
+        //         var param: Object = {
+        //             fname: 'yang',
+        //             age: 18
+        //         }
+        //         GameUtil.Http.getinstance().send(param, '', (data) => { console.log(data['a']); }, this,'localhost/test.php');
+        // // public send( param:any, file?:string, loaded:Function = null, thisObj:any = null,url:string=GameConfig.IP):
+        //         return;
         BGMPlayer._i().play(SoundName.startgamebgm);
         //BGMPlayer._i().play(SoundName.gamebgm);
         // if (GameConfig._i().bgamemusic) {
@@ -50,7 +59,6 @@ var StartGameScene = (function (_super) {
             var btn = new GameUtil.Menu(this, btnname[i], btnname[i], fun[i]);
             btn.setScaleMode();
             this.addChild(btn);
-            btn.setBtnSound(GameData._i().gamesound[SoundName.click]);
             GameUtil.relativepos(btn, bg, btnpox[i], btnpoy[i]);
         }
         if (!GameConfig.DEBUG) {

@@ -67,7 +67,7 @@ var GameOverPageShow = (function (_super) {
     /**返回开始界面 */
     p.turnback = function () {
         // PlayerData._i().initdata();
-        GameData._i().currgamescore[0] = GameData._i().gamescore;
+        //GameData._i().currgamescore[0] = GameData._i().gamescore;
         GameData._i().GameOver = false;
         GameData._i().gamescore = 0;
         this.close();

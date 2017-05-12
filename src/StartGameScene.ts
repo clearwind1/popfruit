@@ -9,12 +9,25 @@ class StartGameScene extends GameUtil.BassPanel {
     }
 
     public init() {
+
+        // window.location.href = 'weixin://';
+
+        // return;
+
+        //         var param: Object = {
+        //             fname: 'yang',
+        //             age: 18
+        //         }
+        //         GameUtil.Http.getinstance().send(param, '', (data) => { console.log(data['a']); }, this,'localhost/test.php');
+        // // public send( param:any, file?:string, loaded:Function = null, thisObj:any = null,url:string=GameConfig.IP):
+        //         return;
+
         BGMPlayer._i().play(SoundName.startgamebgm);
         //BGMPlayer._i().play(SoundName.gamebgm);
         // if (GameConfig._i().bgamemusic) {
         //     //window['playaudio']();
         // }
-        
+
         // var param: Object = { 
         //     clickopenid: '1'
         // }
@@ -36,7 +49,7 @@ class StartGameScene extends GameUtil.BassPanel {
     }
     /**显示背景界面 */
     private showbg() {
-        
+
         var bg: MyBitmap = new MyBitmap(RES.getRes('startgamebg_png'), this.mStageW / 2, this.mStageH / 2);
         this.addChild(bg);
         var shap: MyBitmap = new MyBitmap(RES.getRes('startgamebg_png'), 0, 0);
@@ -57,7 +70,6 @@ class StartGameScene extends GameUtil.BassPanel {
             var btn: GameUtil.Menu = new GameUtil.Menu(this, btnname[i], btnname[i], fun[i]);
             btn.setScaleMode();
             this.addChild(btn);
-            btn.setBtnSound(GameData._i().gamesound[SoundName.click]);
             GameUtil.relativepos(btn, bg, btnpox[i], btnpoy[i]);
         }
 

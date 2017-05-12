@@ -9,6 +9,7 @@ var game_file_list = [
 	"libs/modules/tween/tween.js",
 	"libs/modules/res/res.js",
 	"libs/modules/weixinapi/weixinapi.js",
+	"libs/modules/particle/particle.js",
 	"bin-debug/GameUtils3/BassPanel.js",
 	"bin-debug/Othercontainer.js",
 	"bin-debug/MoreGamePage.js",

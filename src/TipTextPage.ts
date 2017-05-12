@@ -11,7 +11,9 @@ class TipTextPage extends GameUtil.BassPanel {
     private scoreText: GameUtil.MyTextField;
     private levelText: GameUtil.MyTextField;
     private goalText: GameUtil.MyTextField;
+    private tiptext: GameUtil.MyTextField;
     private selettipText: GameUtil.MyTextField;
+    private numtiptext: GameUtil.MyTextField;
 
     public init() {
         var textposy: number = GameConfig.getSH() / 2 - 395;
@@ -39,8 +41,19 @@ class TipTextPage extends GameUtil.BassPanel {
         this.goalText.textColor = 0xffffff;
         this.addChild(this.goalText);
 
-        this.selettipText = new GameUtil.MyTextField(this.mStageW / 2, textposy + 50, 35);
+        this.tiptext = new GameUtil.MyTextField(this.mStageW / 2, textposy + 50, 35);
+        this.tiptext.setText('');
+        this.tiptext.textColor = 0xffffff;
+        this.addChild(this.tiptext);
+
+        this.numtiptext = new GameUtil.MyTextField(this.tiptext.x - 110, textposy + 53, 35, 1);
+        this.numtiptext.setText('');
+        this.numtiptext.textColor = 0xff0000;
+        this.addChild(this.numtiptext);
+
+        this.selettipText = new GameUtil.MyTextField(this.tiptext.x+35, textposy + 53, 35,0.5);
         this.selettipText.setText('');
+        this.selettipText.textColor = 0xff0000;
         this.addChild(this.selettipText);
     }
 
@@ -52,20 +65,24 @@ class TipTextPage extends GameUtil.BassPanel {
 
     public updatatiptext(fnum: number) {
         if (fnum == 0) {
+            this.numtiptext.setText('');
+            this.tiptext.setText('');
             this.selettipText.setText('');
             return;
         }
         var score: number = 20 + (fnum - 2) * ((fnum - 3) * 5 + 25);
-        this.selettipText.setText(fnum+'个水果'+score+'分');
+        this.numtiptext.setText(fnum+'');
+        this.tiptext.setText('个水果         分');
+        this.selettipText.setText(score+'');
     }
 
-    public nextgamescore() {
-        if (GameData._i().currgamescore[1] <= 6) {
-            GameData._i().gamescore = 1000 + 2000 * (GameData._i().currgamescore[1] - 1);
+    public nextgamescore(gamelevel:number = GameData._i().currgamescore[1]) {
+        if (gamelevel <= 6) {
+            GameData._i().gamescore = 1000 + 2000 * (gamelevel - 1);
         }
         else {
-            for (var i: number = 0; i < GameData._i().currgamescore[1] - 6; i++){
-                GameData._i().gamescore += 1400 + (GameData._i().currgamescore[1] - 7) * (3000+1000*Math.floor((GameData._i().currgamescore[1] - 7)/10));
+            for (var i: number = 0; i < gamelevel - 6; i++){
+                GameData._i().gamescore += 14000 + (gamelevel - 7) * (3000+1000*Math.floor((gamelevel - 7)/10));
             }
         }
     }

@@ -4,7 +4,7 @@
  */
 
 /**声音文件枚举 */
-enum SoundName { gamebgm,startgamebgm,comble, move, newcored, click, end };
+enum SoundName { gamebgm,startgamebgm,comble, remove, newcored, clickf, end };
 /**场景转换效果，对应：无效果，从左往右，淡入淡出，向两边分开 */
 enum SceneEffect { NullAction, CrossLeft, TransAlpha, OpenDoor };
 
@@ -20,7 +20,7 @@ class GameConfig {
     public static GAMELEVEL: string = 'gamelevel';          //游戏等级
     public static SoundName: string[] =                     //声音文件名
     [
-         'startgamebgm.mp3','gamebgm.mp3','comble.mp3', 'move.mp3', 'newcored.mp3','click.mp3'
+         'startgamebgm.mp3','gamebgm.mp3','comble.mp3', 'remove.mp3', 'newcored.mp3','clickf.mp3'
         // 'die.mp3', 'fail.mp3', 'goal.mp3', 'beatt.mp3', 'click.mp3'
     ];                 
     public static MoreGameName: string[] =                  //更多游戏名称

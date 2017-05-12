@@ -5,7 +5,7 @@
 			"name": "preloading"
 		},
 		{
-			"keys": "startgamebtn_png,helpbtn_png,sharebtn_png,settingbtn_png,closebtn_png,settingbg_png,settingswitch_png,settingswitchoff_png,settingswitchon_png,rankbg_png,helpbg_png,moregamename_json,restartbtn_png,returnbtn_png,gameoverbg_png,nobtn_png,yesbtn_png,sharetip_png,comble_mp3,move_mp3,newcored_mp3,click_mp3,restartbg_png,gametitle_png,startgamebg_png,helptext_png,ranktext_png,rankname_png,rankselect_png,gamebg_png,restarttext_png,gameoverrestartbtn_png,gameoverretrunbtn_png,gameoversharebtn_png,gameovertext_png,rankbtn_png,fruit_0_png,fruit_1_png,fruit_2_png,fruit_3_png,fruit_4_png,fruit_0_s_png,fruit_1_s_png,fruit_2_s_png,fruit_3_s_png,fruit_4_s_png",
+			"keys": "startgamebtn_png,helpbtn_png,sharebtn_png,settingbtn_png,closebtn_png,settingbg_png,settingswitch_png,settingswitchoff_png,settingswitchon_png,rankbg_png,helpbg_png,moregamename_json,restartbtn_png,returnbtn_png,gameoverbg_png,nobtn_png,yesbtn_png,sharetip_png,comble_mp3,move_mp3,newcored_mp3,click_mp3,restartbg_png,gametitle_png,startgamebg_png,helptext_png,ranktext_png,rankname_png,rankselect_png,gamebg_png,restarttext_png,gameoverrestartbtn_png,gameoverretrunbtn_png,gameoversharebtn_png,gameovertext_png,rankbtn_png,fruit_0_png,fruit_1_png,fruit_2_png,fruit_3_png,fruit_4_png,fruit_0_s_png,fruit_1_s_png,fruit_2_s_png,fruit_3_s_png,fruit_4_s_png,goodtip_png,passgame_png,bom0_png,bom2_png,bom3_png,bom4_png,bomconfig_json,bom1_png,remove_mp3,clickf_mp3",
 			"name": "preload"
 		}
 	],
@@ -229,6 +229,46 @@
 			"name": "fruit_4_s_png",
 			"type": "image",
 			"url": "assets/fruit/fruit_4_s.png"
+		},
+		{
+			"name": "goodtip_png",
+			"type": "image",
+			"url": "assets/goodtip.png"
+		},
+		{
+			"name": "passgame_png",
+			"type": "image",
+			"url": "assets/passgame.png"
+		},
+		{
+			"name": "bom0_png",
+			"type": "image",
+			"url": "assets/bom/bom0.png"
+		},
+		{
+			"name": "bom2_png",
+			"type": "image",
+			"url": "assets/bom/bom2.png"
+		},
+		{
+			"name": "bom3_png",
+			"type": "image",
+			"url": "assets/bom/bom3.png"
+		},
+		{
+			"name": "bom4_png",
+			"type": "image",
+			"url": "assets/bom/bom4.png"
+		},
+		{
+			"name": "bomconfig_json",
+			"type": "json",
+			"url": "assets/bom/bomconfig.json"
+		},
+		{
+			"name": "bom1_png",
+			"type": "image",
+			"url": "assets/bom/bom1.png"
 		}
 	]
 }

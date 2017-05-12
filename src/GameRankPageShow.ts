@@ -32,12 +32,14 @@ class GameRankPageShow extends Othercontainer {
         this.curselect = RankName.Totlerank;
 
         for (var i: number = 0; i < 20; i++) {
-            var rd: number = RandomUtils.limitInteger(17894, 8298764);
-            var hrd: number = RandomUtils.limitInteger(2, 40);
+            var hrd: number = RandomUtils.limitInteger(6, 18);
+            var rankheight: number = 20 + (hrd - 2) * ((hrd - 3) * 5 + 25);
+            var lrd: number = RandomUtils.limitInteger(6, 14);
+            var rd: number = this.nextgamescore(lrd)+RandomUtils.limitInteger(10,170)*10;
             this.ranklish[i] = new Ranksprite();
             this.ranklish[i].rankarr = rd;
-            this.ranklish[i].ranklevel = i + 1;
-            this.ranklish[i].rankheight = hrd * 10;
+            this.ranklish[i].ranklevel = lrd;
+            this.ranklish[i].rankheight = rankheight;
             this.ranklish[i].sxdid = i + 1;
         }
 
@@ -97,7 +99,7 @@ class GameRankPageShow extends Othercontainer {
         var rankscore: string = '';
         switch (this.curselect) {
             case RankName.Totlerank:
-                this.ranklish[19].rankarr = (GameUtil.MAX(GameData._i().currgamescore[0], 10256));
+                this.ranklish[19].rankarr = (GameUtil.MAX(GameData._i().currgamescore[0], 5600));
                 this.ranklish.sort(function (a, b) {
                     return b.rankarr - a.rankarr;
                 });
@@ -109,7 +111,7 @@ class GameRankPageShow extends Othercontainer {
                 });
                 break;
             case RankName.Heightrank:
-                this.ranklish[19].rankheight = (GameUtil.MAX(GameData._i().currgamescore[2], 50));
+                this.ranklish[19].rankheight = (GameUtil.MAX(GameData._i().currgamescore[2], 125));
                 this.ranklish.sort(function (a, b) {
                     return b.rankheight - a.rankheight;
                 });
@@ -122,15 +124,15 @@ class GameRankPageShow extends Othercontainer {
         GameUtil.relativepos(rankcontainsv, rankbg, 240, 130);
         //console.log('result====', result.length);
         for (var i: number = 0; i < 20; i++) {
-            var coverb: MyBitmap = new MyBitmap(RES.getRes('rankline_png'), 190, 25 + i * 54);
+            var coverb: MyBitmap = new MyBitmap(RES.getRes('rankline_png'), 190, 15 + i * 50);
             rankcontainsv.putItem(coverb);
 
-            var ranknt: GameUtil.MyTextField = new GameUtil.MyTextField(20, 25 + i * 54, 30);
+            var ranknt: GameUtil.MyTextField = new GameUtil.MyTextField(20, 15 + i * 50, 30);
             ranknt.setText((i + 1) + '');
             ranknt.textColor = 0xffffff;
             rankcontainsv.putItem(ranknt);
 
-            var playname: GameUtil.MyTextField = new GameUtil.MyTextField(170, 25 + i * 54, 30, 0.5);
+            var playname: GameUtil.MyTextField = new GameUtil.MyTextField(170, 15 + i * 50, 30, 0.5);
             playname.setText('sxd-' + this.ranklish[i].sxdid);
             playname.textColor = 0xffffff;
             rankcontainsv.putItem(playname);
@@ -146,11 +148,25 @@ class GameRankPageShow extends Othercontainer {
                     rankscore = '' + this.ranklish[i].rankheight;
                     break;
             }
-            var playscore: GameUtil.MyTextField = new GameUtil.MyTextField(370, 25 + i * 54, 30, 1);
+            var playscore: GameUtil.MyTextField = new GameUtil.MyTextField(370, 15 + i * 50, 30, 1);
             playscore.setText(rankscore);
             playscore.textColor = 0xffffff;
             rankcontainsv.putItem(playscore);
         }
+    }
+
+    private nextgamescore(gamelevel: number): number {
+        var gamescore:number = 0;
+        if (gamelevel <= 6) {
+            gamescore = 1000 + 2000 * (gamelevel - 1);
+        }
+        else {
+            for (var i: number = 0; i < gamelevel - 6; i++){
+                gamescore += 14000 + (gamelevel - 7) * (3000+1000*Math.floor((gamelevel - 7)/10));
+            }
+        }
+
+        return gamescore;
     }
 
 }

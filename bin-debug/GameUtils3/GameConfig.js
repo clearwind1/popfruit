@@ -8,9 +8,9 @@ var SoundName;
     SoundName[SoundName["gamebgm"] = 0] = "gamebgm";
     SoundName[SoundName["startgamebgm"] = 1] = "startgamebgm";
     SoundName[SoundName["comble"] = 2] = "comble";
-    SoundName[SoundName["move"] = 3] = "move";
+    SoundName[SoundName["remove"] = 3] = "remove";
     SoundName[SoundName["newcored"] = 4] = "newcored";
-    SoundName[SoundName["click"] = 5] = "click";
+    SoundName[SoundName["clickf"] = 5] = "clickf";
     SoundName[SoundName["end"] = 6] = "end";
 })(SoundName || (SoundName = {}));
 ;
@@ -65,7 +65,7 @@ var GameConfig = (function () {
     GameConfig.GAMEMUSIC = 'gamemusic'; //游戏音乐
     GameConfig.GAMELEVEL = 'gamelevel'; //游戏等级
     GameConfig.SoundName = [
-        'startgamebgm.mp3', 'gamebgm.mp3', 'comble.mp3', 'move.mp3', 'newcored.mp3', 'click.mp3'
+        'startgamebgm.mp3', 'gamebgm.mp3', 'comble.mp3', 'remove.mp3', 'newcored.mp3', 'clickf.mp3'
     ];
     GameConfig.MoreGameName = [];
     GameConfig.GUIDESTEPNUM = 2; //新手引导总步数

@@ -39,7 +39,7 @@ class GameScene extends GameUtil.BassPanel {
         this.createblock();
 
         //test        
-       // this.getlastscore();
+        // this.getlastscore();
         //this.gameover();
     }
     private initdata() {
@@ -113,7 +113,7 @@ class GameScene extends GameUtil.BassPanel {
     }
 
     private checkgameover() {
-        GameData._i().GamePause = false;
+        //GameData._i().GamePause = false;
         var bgameover: boolean = true;
         for (var i = 0; i < this.blockdispcont.numChildren; i++) {
             this.selectarr = [];
@@ -135,10 +135,10 @@ class GameScene extends GameUtil.BassPanel {
 
     private touchbegin(evt: egret.TouchEvent) {
 
-        // if (GameData._i().GamePause) {
-        //     return;
-        // }
-        // GameData._i().GamePause = true;
+        if (GameData._i().GamePause) {
+            return;
+        }
+        GameData._i().GamePause = true;
 
         for (var i = 0; i < this.blockdispcont.numChildren; i++) {
             var blocksp: Blocksprite = <Blocksprite>this.blockdispcont.getChildAt(i);
@@ -150,8 +150,11 @@ class GameScene extends GameUtil.BassPanel {
                             this.selectarr[j].select(false);
                         }
                         this.selectarr = [];
+                        GameData._i().GamePause = false;
                     } else {
+                        GameData._i().gamesound[SoundName.remove].play();
                         GameData._i().currgamescore[0] += 20 + (this.selectarr.length - 2) * ((this.selectarr.length - 3) * 5 + 25);
+                        this.createbom(blocksp.blockid, evt.localX, evt.localY, this.selectarr.length);
                         this.tiptext.updatscore();
                         this.dropbolck();
                     }
@@ -164,6 +167,7 @@ class GameScene extends GameUtil.BassPanel {
                     this.checktouchblock(blocksp);
                     //console.log('arr====', this.selectarr);
                     if (this.selectarr.length >= 2) {
+                        GameData._i().gamesound[SoundName.clickf].play();
                         for (var ai: number = 0; ai < this.selectarr.length; ai++) {
                             this.selectarr[ai].select(true);
                         }
@@ -172,6 +176,7 @@ class GameScene extends GameUtil.BassPanel {
                     else {
                         this.selectarr = [];
                     }
+                    GameData._i().GamePause = false;
                 }
                 break;
             }
@@ -225,6 +230,15 @@ class GameScene extends GameUtil.BassPanel {
     }
 
     private dropbolck() {
+
+        if (this.selectarr.length > 6) {
+            var goodtipimg: MyBitmap = new MyBitmap(RES.getRes('goodtip_png'), this.mStageW / 2, this.mStageH / 2);
+            this.addChild(goodtipimg);
+            egret.Tween.get(goodtipimg).to({ y: this.mStageH / 2 - 100 }, 550).call(function () {
+                goodtipimg.parent.removeChild(goodtipimg);
+            })
+        }
+
         for (var i: number = 0; i < this.selectarr.length; i++) {
             var blocksp = this.selectarr[i];
             this.blockdispcont.removeChild(blocksp);
@@ -281,7 +295,7 @@ class GameScene extends GameUtil.BassPanel {
 
                                 var tw = egret.Tween.get(blocksp);
                                 tw.to({ x: posx }, 300).call(function () {
-                                    
+
                                 });
 
                                 this.blockarr[i + GameConfig.BROW * k] = blocksp;
@@ -318,9 +332,30 @@ class GameScene extends GameUtil.BassPanel {
         var addscore: number = this.getlastscore();
         GameData._i().currgamescore[0] += addscore;
 
+        var tiptext: GameUtil.MyTextField = new GameUtil.MyTextField(this.mStageW / 2, this.mStageH / 2, 50);
+        this.addChild(tiptext);
+        tiptext.textAlign = egret.HorizontalAlign.CENTER;
+        tiptext.width = 300;
+        tiptext.textColor = 0xff0000;
+        tiptext.setText('剩余' + GameData._i().lastfruit + '个水果' + '加' + addscore + '分');
+
+        egret.setTimeout(this.culgameover, this, 2700, [tiptext]);
+
+    }
+    private culgameover(tiptext: any) {
+
+        (<GameUtil.MyTextField>tiptext[0]).parent.removeChild(tiptext[0]);
+
         if (GameData._i().currgamescore[0] >= GameData._i().gamescore) {
             //下一关
-            this.nextlevelgame();
+            var passgameimg: MyBitmap = new MyBitmap(RES.getRes('passgame_png'), this.mStageW / 2, this.mStageH / 2);
+            this.addChild(passgameimg);
+            passgameimg.scaleX = 0;
+            passgameimg.scaleY = 0;
+            egret.Tween.get(passgameimg).to({ scaleX: 1.2, scaleY: 1.2 }, 900).to({ scaleX: 1, scaleY: 1 }, 400).to({ scaleX: 1 }, 500).call(() => {
+                passgameimg.parent.removeChild(passgameimg);
+                this.nextlevelgame();
+            });
         }
         else {
             GameData._i().GameOver = true;
@@ -386,7 +421,7 @@ class GameScene extends GameUtil.BassPanel {
     }
     public restart() {
         this.blockdispcont.removeChildren();
-        for (var i: number = 0; i < GameConfig.BROW*GameConfig.BCOL; i++) {
+        for (var i: number = 0; i < GameConfig.BROW * GameConfig.BCOL; i++) {
             this.blockarr[i] = null;
         }
         GameData._i().gamescore = 1000;
@@ -409,14 +444,35 @@ class GameScene extends GameUtil.BassPanel {
         return rect;
     }
 
-    private getlastscore(): number{
+    private getlastscore(): number {
         var lastscore: number = 0;
         var lastnum: number = GameUtil.MAX(1, this.blockdispcont.numChildren);
-        for (var i: number = 0; i < 11 - lastnum; i++){
+        for (var i: number = 0; i < 11 - lastnum; i++) {
             lastscore += (380 - i * 40);
             //console.log('\nlastscore====', lastscore);
         }
 
         return lastscore;
+    }
+
+    private createbom(resnum: number, x: number, y: number, maxpa: number) {
+        //获取纹理
+        var texture = RES.getRes("bom" + resnum + "_png");
+        //获取配置
+        var config = RES.getRes("bomconfig_json");
+        //创建 GravityParticleSystem
+        var system = new particle.GravityParticleSystem(texture, config);
+        system.emitterX = x;
+        system.emitterY = y;
+        //启动粒子库
+        system.start(800);
+        system.maxParticles = maxpa * 5;
+        //将例子系统添加到舞台
+        this.addChild(system);
+        egret.setTimeout(() => {
+            system.stop();
+            this.removeChild(system);
+            GameData._i().GamePause = false;
+        }, this, 1000);
     }
 }
